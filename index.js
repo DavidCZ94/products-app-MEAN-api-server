@@ -7,5 +7,5 @@ const productsApi = require('./routes/products');
 productsApi(app);
 
 app.listen(config.port, function () {
-    console.log(`Listening on  http:localhost ${config.port}`);
+  console.log(`Listening on  http:localhost ${config.port}`);
 });
