@@ -4,6 +4,9 @@ const app = express();
 const { config } = require('./config/index');
 const productsApi = require('./routes/products');
 
+// Body Parser
+app.use(express.json());
+
 productsApi(app);
 
 app.listen(config.port, function () {

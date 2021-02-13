@@ -39,10 +39,9 @@ function productsApi(app) {
     const { body: product } = req;
     try {
       const createdProductId = await productsService.createProduct( {product} );
-
       res.status(201).json({
         data: createdProductId,
-        message: 'Product create',
+        message: 'Product created',
       });
     } catch (err) {
       next(err);
