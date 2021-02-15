@@ -1,102 +1,49 @@
 [
   {
-    "id": "35d8fd30-6242-44d2-9af2-fd9690417f7a",
-    "created_date": "11/21/2020",
+    "creating_date": "11/21/2020",
     "name": "Apple - Macintosh",
     "brand": "Hello",
     "class": "Health Care",
+    "distributor": "string",
+    "stock": 10,
+    "position": "String",
     "sku": "SNMX",
-    "sale_price": "$41.9M",
-    "cost_price": "$1.06B"
+    "sale_price": 41.9,
+    "cost_price": 1.06
   },
   {
-    "id": "9e31a50b-1e95-41c3-a9cd-4dcd11dd25c1",
-    "created_date": "10/18/2020",
-    "name": "Ice Cream - Vanilla",
-    "brand": "HYDRASTIS CANADENSIS",
-    "class": "Finance",
-    "sku": "FMCIU",
-    "sale_price": "n/a",
-    "cost_price": "$118.89M"
+    "creating_date": "11/21/2020",
+    "name": "Apple - Macintosh",
+    "brand": "Hello",
+    "class": "Health Care",
+    "distributor": "string",
+    "stock": 10,
+    "position": "String",
+    "sku": "SNMX",
+    "sale_price": 41.9,
+    "cost_price": 1.06
   },
   {
-    "id": "724a4c47-f8c4-4924-a401-3eb4705a0375",
-    "created_date": "4/14/2020",
-    "name": "Wine - Jaboulet Cotes Du Rhone",
-    "brand": "Colgate",
-    "class": "Capital Goods",
-    "sku": "TOWR",
-    "sale_price": "$446.68M",
-    "cost_price": "$185.56M"
+    "creating_date": "11/21/2020",
+    "name": "Apple - Macintosh",
+    "brand": "Hello",
+    "class": "Health Care",
+    "distributor": "string",
+    "stock": 10,
+    "position": "String",
+    "sku": "SNMX",
+    "sale_price": 41.9,
+    "cost_price": 1.06
   },
   {
-    "id": "944c8c18-61d9-49b3-b528-1f8c870d48fa",
-    "created_date": "1/28/2021",
-    "name": "Soup - Campbells, Creamy",
-    "brand": "antacid",
-    "class": "Finance",
-    "sku": "SC",
-    "sale_price": "$4.15B",
-    "cost_price": "$494.01M"
-  },
-  {
-    "id": "b7df101f-f824-4394-956d-17c4e3b280eb",
-    "created_date": "1/8/2021",
-    "name": "Tamarillo",
-    "brand": "TOPIRAMATE",
-    "class": "n/a",
-    "sku": "GLOG^A",
-    "sale_price": "n/a",
-    "cost_price": "$3.09B"
-  },
-  {
-    "id": "15c170b3-39b5-4f27-98cb-4aace7a9f317",
-    "created_date": "2/21/2020",
-    "name": "Squash - Pepper",
-    "brand": "PURELL Advanced Hand Sanitizer Ocean Kiss",
-    "class": "Finance",
-    "sku": "ORI",
-    "sale_price": "$5.38B",
-    "cost_price": "$5.5B"
-  },
-  {
-    "id": "94a4881e-9eac-4291-8a40-a791971690dd",
-    "created_date": "12/17/2020",
-    "name": "Coffee - Flavoured",
-    "brand": "ZOVIRAX",
-    "class": "n/a",
-    "sku": "GAIN",
-    "sale_price": "$305.91M",
-    "cost_price": "$355.28M"
-  },
-  {
-    "id": "97e84bda-767f-4aa4-8dea-c0397d27d00d",
-    "created_date": "8/10/2020",
-    "name": "Radish - Black, Winter, Organic",
-    "brand": "Medium Tan Foundation SPF 15",
-    "class": "Finance",
-    "sku": "GHL",
-    "sale_price": "$607.83M",
-    "cost_price": "$529.59M"
-  },
-  {
-    "id": "27edfe47-98a6-4833-8655-5e0af2013c98",
-    "created_date": "5/11/2020",
-    "name": "Carbonated Water - Raspberry",
-    "brand": "RUTIN",
-    "class": "Finance",
-    "sku": "CAC",
-    "sale_price": "$656.34M",
-    "cost_price": "n/a"
-  },
-  {
-    "id": "fe3266c8-60f3-4570-a334-351aa6190c35",
-    "created_date": "2/24/2020",
-    "name": "Bread Crumbs - Panko",
-    "brand": "nasal decongestant",
-    "class": "Finance",
-    "sku": "TCF",
-    "sale_price": "$2.72B",
-    "cost_price": "$320.72M"
+    "creating_date": "11/21/2020",
+    "name": "Apple - Macintosh",
+    "brand": "Hello",
+    "class": "Health Care",
+    "distributor": "string",
+    "stock": 10,
+    "position": "String",
+    "sku": "SNMX",
+    "sale_price": 41.9,
+    "cost_price": 1.06
   }
-]
