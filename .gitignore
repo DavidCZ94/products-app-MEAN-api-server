@@ -120,6 +120,10 @@ typings/
 # Yarn Integrity file
 .yarn-integrity
 
+# Testing Data
+
+schemes/
+
 # dotenv environment variables file
 .env
 .env.test

@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "dev": "set DEBUG=app:* && set NODE_ENV=development && nodemon index",
-    "start": "set NODE_ENV=production && node index"
+    "start": "set NODE_ENV=production && node index",
+    "seedProducts": "set DEBUG=app:* && set NODE_ENV=development && node scripts/mongo/seedProducts.js",
+    "seedUsers": "set DEBUG=app:* && set NODE_ENV=development && node scripts/mongo/seedUsers.js",
+    "seedApiKeys": "set DEBUG=app:* && set NODE_ENV=development && node scripts/mongo/seedApiKeys.js"
   },
   "keywords": [],
   "author": "",
@@ -13,11 +16,18 @@
   "dependencies": {
     "@hapi/boom": "^9.1.1",
     "@hapi/joi": "^17.1.1",
+    "bcrypt": "^5.0.0",
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "mongodb": "^3.6.4"
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^3.6.4",
+    "passport": "^0.4.1",
+    "passport-http": "^0.3.0",
+    "passport-jwt": "^4.0.0"
   },
   "devDependencies": {
+    "chalk": "^4.1.0",
     "eslint": "^7.19.0",
     "eslint-config-prettier": "^7.2.0",
     "eslint-plugin-prettier": "^3.3.1",

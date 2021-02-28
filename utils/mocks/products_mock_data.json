@@ -1,0 +1,114 @@
+[
+      {
+          "_id": "6029db8f0dd16c4d006e244c",
+          "creating_date": "11/21/2020",
+          "name": "Prymer de sombras",
+          "brand": "Hello",
+          "class": "Health Care",
+          "distributor": "string",
+          "stock": 10,
+          "position": "String",
+          "sku": "SNMX",
+          "sale_price": 41.9,
+          "cost_price": 1.06
+      },
+      {
+          "_id": "6029dbe90dd16c4d006e244d",
+          "creating_date": "11/21/2020",
+          "name": "Apple - Macintosh",
+          "brand": "Hello",
+          "class": "Health Care",
+          "distributor": "string",
+          "stock": 10,
+          "position": "String",
+          "sku": "SNMX",
+          "sale_price": 41.9,
+          "cost_price": 1.06
+      },
+      {
+          "_id": "6029dbea0dd16c4d006e244e",
+          "creating_date": "11/21/2020",
+          "name": "Apple - Macintosh",
+          "brand": "Hello",
+          "class": "Health Care",
+          "distributor": "string",
+          "stock": 10,
+          "position": "String",
+          "sku": "SNMX",
+          "sale_price": 41.9,
+          "cost_price": 1.06
+      },
+      {
+          "_id": "6029dbeb0dd16c4d006e244f",
+          "creating_date": "11/21/2020",
+          "name": "Apple - Macintosh",
+          "brand": "Hello",
+          "class": "Health Care",
+          "distributor": "string",
+          "stock": 10,
+          "position": "String",
+          "sku": "SNMX",
+          "sale_price": 41.9,
+          "cost_price": 1.06
+      },
+      {
+          "_id": "602b2bdad36eb736e45da956",
+          "creating_date": "11/21/2020",
+          "name": "Apple - Macintosh",
+          "brand": "Hello",
+          "class": "Health Care",
+          "distributor": "string",
+          "stock": 10,
+          "position": "String",
+          "sku": "SNMX",
+          "sale_price": 41.9,
+          "cost_price": 1.06,
+          "tags": [
+              "skin",
+              "skincare",
+              "beauty",
+              "make-up",
+              "love yourself"
+          ]
+      },
+      {
+          "_id": "602b2bddd36eb736e45da957",
+          "creating_date": "11/21/2020",
+          "name": "Apple - Macintosh",
+          "brand": "Hello",
+          "class": "Health Care",
+          "distributor": "string",
+          "stock": 10,
+          "position": "String",
+          "sku": "SNMX",
+          "sale_price": 41.9,
+          "cost_price": 1.06,
+          "tags": [
+              "skin",
+              "skincare",
+              "beauty",
+              "make-up",
+              "love yourself"
+          ]
+      },
+      {
+          "_id": "602b2bded36eb736e45da958",
+          "creating_date": "11/21/2020",
+          "name": "Apple - Macintosh",
+          "brand": "Hello",
+          "class": "Health Care",
+          "distributor": "string",
+          "stock": 10,
+          "position": "String",
+          "sku": "SNMX",
+          "sale_price": 41.9,
+          "cost_price": 1.06,
+          "tags": [
+              "skin",
+              "skincare",
+              "beauty",
+              "make-up",
+              "love yourself"
+          ]
+      }
+]
