@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 
+const authApi = require('./routes/auth');
 const { config } = require('./config/index');
 const productsApi = require('./routes/products');
 
@@ -21,6 +22,7 @@ app.use(cors());
 app.use(express.json());
 
 // api Router
+authApi(app);
 productsApi(app);
 // catch 404 error
 app.use(notFoundHandler);

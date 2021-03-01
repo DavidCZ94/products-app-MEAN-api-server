@@ -43,11 +43,13 @@ async function seedUsers() {
   try {
     const mongoDB = new MongoLib();
 
+    // Creating but bnot excecuted promises
     const promises = users.map(async user => {
       const userId = await createUser(mongoDB, user);
       debug(chalk.green('User created with id:', userId));
     });
 
+    // Excecute the creted promises
     await Promise.all(promises);
     return process.exit(0);
   } catch (error) {
