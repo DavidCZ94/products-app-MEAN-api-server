@@ -9,11 +9,10 @@ passport.use(
   new Strategy(
     {
       secretOrKey: config.authJwtSecret,
-      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken,
+      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken()
     },
     async function (tokenPayLoad, cb) {
       const userService = new UserService();
-
       try {
         const user = await userService.getUser({ email: tokenPayLoad.email });
 
