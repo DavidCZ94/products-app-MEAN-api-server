@@ -4,7 +4,6 @@ const boom = require('@hapi/boom');
 const bcrypt = require('bcrypt');
 
 const UserService = require('../../../services/users');
-
 passport.use(
     new BasicStrategy(async function(email, password, cb){
         const userservice = new UserService();

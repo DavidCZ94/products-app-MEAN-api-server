@@ -3,18 +3,21 @@ const passport = require('passport');
 const boom = require('@hapi/boom');
 const jwt = require('JsonWebToken');
 const ApiKeysService = require('../services/apiKeys');
-
+const Userservice = require('../services/users'); 
+const validationHandler = require('../utils/middleware/validationHandler');
+const { createUserScheme } = require('../utils/schemes/users');
 const { config } = require('../config');
 
 // basic strategy
 
 require('../utils/auth/strategies/basic');
 
-function authapi(app) {
+function authApi(app) {
   const router = express.Router();
-  app.use('/api/auth', router);
   const apiKeysService = new ApiKeysService();
-
+  const userService = new Userservice();
+  
+  app.use('/api/auth', router);
   router.post('/sign-in', async function (req, res, next) {
     const { apiKeyToken } = req.body;
     if (!apiKeyToken) {
@@ -26,7 +29,7 @@ function authapi(app) {
         if (error || !user) {
           next(boom.unauthorized());
         }
-
+        // req.login is ised to establish a session
         req.login(user, { session: false }, async function (error) {
           if (error) {
             next(error);
@@ -55,9 +58,23 @@ function authapi(app) {
       } catch (error) {
         next(error);
       }
-    })(req, res.next);
+    })(req, res, next);
+  });
+
+  router.post('/sign-up', validationHandler(createUserScheme), async function(req, res, next){
+    const { body: user } = req;
+    try {
+      const createdUserId = await userService.createUser({ user });
+      res.status(201).json({
+        data: createdUserId,
+        message: 'user created'
+      });
+    } catch (error) {
+      next(error);
+    }
+
   });
 }
 
 
-module.exports = authapi;
+module.exports = authApi;
