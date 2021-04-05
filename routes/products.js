@@ -3,6 +3,7 @@ const passport = require('passport');
 const ProductsService = require('../services/products');
 
 const validationHandler = require('../utils/middleware/validationHandler');
+const scopesvalidationHandler = require('../utils/middleware/scopesValidationHandler');
 const {
   productIdScheme,
   createProductSccheme,
@@ -25,8 +26,8 @@ function productsApi(app) {
 
   const productsService = new ProductsService();
 
-  router.get(
-    '/',
+  // Get products
+  router.get( '/',scopesvalidationHandler(['read:products']),
     async function (req, res, next) {
       cacheResponse(res, FIVE_MINUTES_IN_SECONDS);
       const { tags } = req.query;
@@ -41,9 +42,10 @@ function productsApi(app) {
       }
     }
   );
-
+  // Get product by id
   router.get(
     '/:productId',
+    scopesvalidationHandler(['read:products']),
     validationHandler({ productId: productIdScheme }, 'params'),
     async function (req, res, next) {
       cacheResponse(res, SIXTY_MINUTES_IN_SECONDS);
@@ -59,16 +61,15 @@ function productsApi(app) {
       }
     }
   );
-
+  // Create new product
   router.post(
     '/',
+    scopesvalidationHandler(['create:products']),
     validationHandler(createProductSccheme),
     async function (req, res, next) {
       const { body: product } = req;
       try {
-        const createdProductId = await productsService.createProduct({
-          product,
-        });
+        const createdProductId = await productsService.createProduct({ product });
         res.status(201).json({
           data: createdProductId,
           message: 'Product created',
@@ -78,9 +79,10 @@ function productsApi(app) {
       }
     }
   );
-
+  //Update product by id
   router.put(
     '/:productId',
+    scopesvalidationHandler(['update:products']),
     validationHandler({ productId: productIdScheme }, 'params'),
     validationHandler(updateProductScheme),
     async function (req, res, next) {
@@ -101,9 +103,10 @@ function productsApi(app) {
       }
     }
   );
-
+  //Delete product
   router.delete(
     '/:productId',
+    scopesvalidationHandler(['delete:products']),
     validationHandler({ productId: productIdScheme }, 'params'),
     async function (req, res, next) {
       const { productId } = req.params;

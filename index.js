@@ -1,4 +1,5 @@
 const express = require('express');
+const helmet = require('helmet');
 const cors = require('cors');
 const app = express();
 
@@ -20,6 +21,8 @@ app.use(cors());
 
 // Body Parser
 app.use(express.json());
+
+app.use(helmet());
 
 // api Router
 authApi(app);

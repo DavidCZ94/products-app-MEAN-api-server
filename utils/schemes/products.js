@@ -14,14 +14,14 @@ const productCostPriceScheme = joi.number().min(0).max(999999999);
 const productTagsSchema = joi.array().items(joi.string().max(50));
 
 const createProductSccheme =  {
-    creating_date: productCreatingDateScheme.required(),
+    creating_date: productCreatingDateScheme,
     name: productNameScheme.required(),
     brand: productBrandScheme.required(),
     class: productClassScheme.required(),
     distributor: productDistributorScheme.required(),
     stock: productStockScheme.required(),
     position: productPositionScheme.required(),
-    sku: productSkuScheme.required(),
+    sku: productSkuScheme,
     sale_price: productSalePriceScheme.required(),
     cost_price: productCostPriceScheme.required(),
     tags: productTagsSchema

@@ -19,7 +19,12 @@ class ProductsService {
   }
 
   async createProduct({ product }) {
-    const createdProductId = await this.mongoDB.create(this.collection, product);
+    const createdProductId = await this.mongoDB.create(
+      this.collection, 
+      {
+        ...product,
+        sku: await this.generateSku('ELY')
+      });
     return createdProductId;
   }
 
@@ -31,6 +36,17 @@ class ProductsService {
   async deleteProduct( { productId } ) {
     const deletedProductId = await this.mongoDB.delete(this.collection ,productId);
     return deletedProductId;
+  }
+
+  async generateSku(index){
+    const skuMaxValue = await this.getProducts({})
+    .then((products) => {
+      let skuValues = products.map((item) => {
+        return parseInt(item.sku.substring(3,));
+      });
+      return Math.max(...skuValues) + 1;
+    });
+    return index +  `${skuMaxValue}`;
   }
 }
 
