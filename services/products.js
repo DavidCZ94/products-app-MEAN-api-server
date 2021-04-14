@@ -7,8 +7,12 @@ class ProductsService {
     this.mongoDB = new MongoLib();
   }
 
-  async getProducts( { tags } ) {
-    const query = tags && { tags: { $in: tags } }; 
+  async getProducts( { search } ) {
+
+    const query = {
+      name: new RegExp(`.*${search}.*` ,`i`)
+    } 
+    
     const products = await this.mongoDB.getAll(this.collection, query);
     return products || [];
   }

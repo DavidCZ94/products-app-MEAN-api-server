@@ -30,9 +30,9 @@ function productsApi(app) {
   router.get( '/',scopesvalidationHandler(['read:products']),
     async function (req, res, next) {
       cacheResponse(res, FIVE_MINUTES_IN_SECONDS);
-      const { tags } = req.query;
       try {
-        const products = await productsService.getProducts({ tags });
+        const search = req.query.searchBy || '';
+        const products = await productsService.getProducts({ search });
         res.status(200).json({
           data: products,
           message: 'Products listed',
