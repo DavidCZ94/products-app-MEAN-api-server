@@ -10,7 +10,14 @@ class ProductsService {
   async getProducts( { search } ) {
 
     const query = {
-      name: new RegExp(`.*${search}.*` ,`i`)
+      $or: [
+        {name: new RegExp(`.*${search}.*` ,`i`)},
+        {sku: new RegExp(`.*${search}.*` ,`i`)},
+        {brand: new RegExp(`.*${search}.*` ,`i`)},
+        {class: new RegExp(`.*${search}.*` ,`i`)},
+        {position: new RegExp(`.*${search}.*` ,`i`)},
+        {tags: new RegExp(`.*${search}.*` ,`i`)},
+      ]
     } 
     
     const products = await this.mongoDB.getAll(this.collection, query);

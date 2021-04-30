@@ -6,6 +6,7 @@ const app = express();
 const authApi = require('./routes/auth');
 const { config } = require('./config/index');
 const productsApi = require('./routes/products');
+const usersApi = require('./routes/users');
 
 const {
   logErrors,
@@ -27,6 +28,7 @@ app.use(helmet());
 // api Router
 authApi(app);
 productsApi(app);
+usersApi(app);
 // catch 404 error
 app.use(notFoundHandler);
 

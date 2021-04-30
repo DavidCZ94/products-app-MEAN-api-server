@@ -11,7 +11,7 @@
     "seedApiKeys": "set DEBUG=app:* && set NODE_ENV=development && node scripts/mongo/seedApiKeys.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "david940103@gmail.com",
   "license": "ISC",
   "dependencies": {
     "@hapi/boom": "^9.1.1",

@@ -1,7 +1,7 @@
 const express = require('express');
 const passport = require('passport');
-const ProductsService = require('../services/products');
 
+const ProductsService = require('../services/products');
 const validationHandler = require('../utils/middleware/validationHandler');
 const scopesvalidationHandler = require('../utils/middleware/scopesValidationHandler');
 const {
