@@ -22,13 +22,13 @@ const createProductSccheme =  {
     position: productPositionScheme.required(),
     sale_price: productSalePriceScheme.required(),
     cost_price: productCostPriceScheme.required(),
-    creating_date: productCreatingDateScheme,
+    creation_date: productCreatingDateScheme,
     sku: productSkuScheme,
     tags: productTagsSchema
 };
 
 const updateProductScheme = {
-    creating_date: productCreatingDateScheme,
+    creation_date: productCreatingDateScheme,
     name: productNameScheme,
     brand: productBrandScheme,
     class: productClassScheme,
