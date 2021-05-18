@@ -15,6 +15,9 @@ class OrdersService {
                 {creation_date:  new RegExp(`.*${search}.*` ,`i`)},
             ]
         }
+
+        const orders = await this.mongoDB.getAll(this.collection, query);
+        return orders || [];
     }
 
     async createOrder( { order } ){

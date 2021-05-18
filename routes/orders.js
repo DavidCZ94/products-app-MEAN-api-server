@@ -11,6 +11,7 @@ const {
     FIVE_MINUTES_IN_SECONDS,
     SIXTY_MINUTES_IN_SECONDS
 } = require ('../utils/time');
+const { cache } = require('@hapi/joi');
 const orderService = new OrdersService();
 
 function ordersApi(app) {
@@ -39,6 +40,23 @@ function ordersApi(app) {
             }
         }
     )
+
+    // Get orders
+    router.get( '/', scopesvalidationHandler(['read:products']),
+        async function (req, res, next) {
+            cacheResponse(res, SIXTY_MINUTES_IN_SECONDS);       
+            try {
+                const search = req.query.searchBy || '';
+                const orders = await orderService.getOrders({ search });
+                res.status(200).json({
+                    data: orders,
+                    message: 'orders listed'
+                });
+            } catch (err) {
+                next(err);
+            } 
+        }
+    );
 
 };
 
