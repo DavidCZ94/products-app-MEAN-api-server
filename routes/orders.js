@@ -3,7 +3,7 @@ const passport = require('passport');
 
 const OrdersService = require('../services/orders');
 const scopesValidationHamdler = require('../utils/middleware/scopesValidationHandler');
-const validatioHandler = require('../utils/middleware/validationHandler');
+const validationHandler = require('../utils/middleware/validationHandler');
 const { orderIdScheme, updateOrderScheme, createOrderScheme } = require('../utils/schemes/orders');
 
 const cacheResponse = require('../utils/cacheResponse');
@@ -26,7 +26,7 @@ function ordersApi(app) {
     router.post(
         '/',
         scopesValidationHamdler(['create:products']),
-        validatioHandler(createOrderScheme),
+        validationHandler(createOrderScheme),
         async function (req, res, next) {
             const { body: order } = req;
             try {
@@ -42,7 +42,9 @@ function ordersApi(app) {
     )
 
     // Get orders
-    router.get( '/', scopesvalidationHandler(['read:products']),
+    router.get( 
+        '/', 
+        scopesValidationHamdler(['read:products']),
         async function (req, res, next) {
             cacheResponse(res, SIXTY_MINUTES_IN_SECONDS);       
             try {
@@ -57,6 +59,49 @@ function ordersApi(app) {
             } 
         }
     );
+    // Get orders byID
+    router.get(
+        '/:orderId',
+        scopesValidationHamdler(['read:products']),
+        validationHandler({ orderId: orderIdScheme }, 'params'),
+        async function (req, res, next) {
+            cacheResponse(res, SIXTY_MINUTES_IN_SECONDS);
+            const { orderId } = req.params;
+            try {
+                const order = await orderService.getOrder({ orderId });
+                res.status(200).json({
+                    data: order,
+                    message: 'Order retrieves'
+                });
+            } catch (err) {
+                next(err);
+            }
+        }
+    );
+
+    // Update Order
+    router.put(
+        '/:orderId',
+        scopesValidationHamdler(['update:products']),
+        validationHandler({ orderId: orderIdScheme }, 'params'),
+        validationHandler(updateOrderScheme),
+        async function (req, res, next) {
+          const { orderId } = req.params;
+          const { body: order } = req;
+          try {
+            const updatedOrderId = await orderService.updateProduct({
+                orderId,
+                order,
+            });
+            res.status(200).json({
+                data: updatedOrderId,
+                message: 'Order Updated'
+            });
+          } catch (err) {
+            next(err);
+          }
+        }
+      );
 
 };
 

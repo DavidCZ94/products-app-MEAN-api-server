@@ -25,6 +25,16 @@ class OrdersService {
             this.collection, order );
         return createdOrderId;
     }
+
+    async getOrder( {orderId} ){
+        const order = await this.mongoDB.get(this.collection, orderId);
+        return order || {};
+    }
+
+    async updateProduct( {orderId, order} ){
+        const updateOrderId = this.mongoDB.update(this.collection, orderId, order);
+        return updateOrderId;
+    }
 }
 
 module.exports = OrdersService;

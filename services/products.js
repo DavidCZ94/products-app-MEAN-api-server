@@ -45,6 +45,7 @@ class ProductsService {
   }
 
   async deleteProduct( { productId } ) {
+    console.log(productId);
     const deletedProductId = await this.mongoDB.delete(this.collection ,productId);
     return deletedProductId;
   }
@@ -53,6 +54,7 @@ class ProductsService {
     const skuMaxValue = await this.getProducts({})
     .then((products) => {
       let skuValues = products.map((item) => {
+        console.log(item);
         return parseInt(item.sku.substring(3,));
       });
       return Math.max(...skuValues) + 1;
