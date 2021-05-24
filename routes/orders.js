@@ -30,9 +30,9 @@ function ordersApi(app) {
         async function (req, res, next) {
             const { body: order } = req;
             try {
-                const createOrderId = await orderService.createOrder( { order } );
+                const createOrderInform = await orderService.createOrder( { order } );
                 res.status(201).json({
-                    data:  createOrderId,
+                    data:  createOrderInform,
                     message: 'Order created',
                 });
             } catch (err) {

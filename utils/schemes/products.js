@@ -11,7 +11,7 @@ const productPositionScheme = joi.string().max(50);
 const productSkuScheme = joi.string().max(50);
 const productSalePriceScheme = joi.number().min(0).max(999999999);
 const productCostPriceScheme = joi.number().min(0).max(999999999);
-const productTagsSchema = joi.array().items(joi.string().max(50));
+const productTagsSchema = joi.array();
 
 const createProductSccheme =  {
     name: productNameScheme.required(),

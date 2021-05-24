@@ -31,11 +31,7 @@ class ProductsService {
 
   async createProduct({ product }) {
     const createdProductId = await this.mongoDB.create(
-      this.collection, 
-      {
-        ...product,
-        sku: await this.generateSku('ELY')
-      });
+      this.collection, product);
     return createdProductId;
   }
 
@@ -49,17 +45,6 @@ class ProductsService {
     return data;
   }
 
-  async generateSku(index){
-    const skuMaxValue = await this.getProducts({})
-    .then((products) => {
-      let skuValues = products.map((item) => {
-        console.log(item);
-        return parseInt(item.sku.substring(3,));
-      });
-      return Math.max(...skuValues) + 1;
-    });
-    return index +  `${skuMaxValue}`;
-  }
 }
 
 module.exports = ProductsService;

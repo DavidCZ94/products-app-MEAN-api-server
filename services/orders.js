@@ -1,9 +1,16 @@
 const MongoLib = require('../lib/mongo');
 
 class OrdersService {
+    
     constructor(){
         this.collection = 'orders';
+        this.productCollection = 'products';
         this.mongoDB = new MongoLib();
+    }
+
+    async getOrder( {orderId} ){
+        const order = await this.mongoDB.get(this.collection, orderId);
+        return order || {};
     }
 
     async getOrders( { search }){
@@ -21,20 +28,41 @@ class OrdersService {
     }
 
     async createOrder( { order } ){
-        const createdOrderId = await this.mongoDB.create(
-            this.collection, order );
-        return createdOrderId;
+        const updatedProductsInform = await this.updateProductsStock(order);
+        order = {
+            ...order,
+            'updatedProducstInform': updatedProductsInform
+        }
+        const createdOrderId = await this.mongoDB.create( this.collection, order );
+        return { createdOrderId, updatedProductsInform} ;
+    } 
+
+    async updateProductsStock(order){
+        const updatedProductInform = await Promise.all(
+            order.shopping_cart.map(
+                async (product) => {
+                    const productId = product._id;
+                    delete product._id;
+                    delete product.qty;
+                    const updatedProducId = await this.updateProduct({
+                        productId ,
+                        product,
+                    });
+                    if(!updatedProducId){
+                        return { 'error': product.sku };
+                    }
+                    return { 'updated' :product.sku };
+                }
+            )
+        );
+        return updatedProductInform;
     }
 
-    async getOrder( {orderId} ){
-        const order = await this.mongoDB.get(this.collection, orderId);
-        return order || {};
+    updateProduct( {productId, product}  = {} ) {
+        const updatedProductId = this.mongoDB.update(this.productCollection, productId, product);
+        return updatedProductId;
     }
 
-    async updateProduct( {orderId, order} ){
-        const updateOrderId = this.mongoDB.update(this.collection, orderId, order);
-        return updateOrderId;
-    }
 }
 
 module.exports = OrdersService;
