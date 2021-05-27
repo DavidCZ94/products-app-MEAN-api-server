@@ -5,10 +5,11 @@ class OrdersService {
     constructor(){
         this.collection = 'orders';
         this.productCollection = 'products';
+        this.usersCollection = 'users';
         this.mongoDB = new MongoLib();
     }
 
-    async getOrder( {orderId} ){
+    async getOrder( orderId ){
         const order = await this.mongoDB.get(this.collection, orderId);
         return order || {};
     }
@@ -17,6 +18,7 @@ class OrdersService {
         const query = {
             $or: [
                 {clientId:  new RegExp(`.*${search}.*` ,`i`)},
+                {clientName:  new RegExp(`.*${search}.*` ,`i`)},
                 {paid_out:  new RegExp(`.*${search}.*` ,`i`)},
                 {status:  new RegExp(`.*${search}.*` ,`i`)},
                 {creation_date:  new RegExp(`.*${search}.*` ,`i`)},
@@ -34,8 +36,20 @@ class OrdersService {
             'updatedProducstInform': updatedProductsInform
         }
         const createdOrderId = await this.mongoDB.create( this.collection, order );
+        //Update USer
+        const orderCreated = await this.getOrder( createdOrderId );
+        const userUpdatedId = await this.addTheOrderToTheClient(orderCreated);
         return { createdOrderId, updatedProductsInform} ;
     } 
+
+    async addTheOrderToTheClient(order){
+        const user = await this.mongoDB.get(this.usersCollection, order.clientId);
+        const userId = order.clientId;
+        delete order.clientId;
+        user.orders.push(order);
+        const updatedUserId = this.mongoDB.update(this.usersCollection, userId, user);
+        return updatedUserId;
+    }
 
     async updateProductsStock(order){
         const updatedProductInform = await Promise.all(

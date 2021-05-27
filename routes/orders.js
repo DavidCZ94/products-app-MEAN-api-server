@@ -68,7 +68,7 @@ function ordersApi(app) {
             cacheResponse(res, SIXTY_MINUTES_IN_SECONDS);
             const { orderId } = req.params;
             try {
-                const order = await orderService.getOrder({ orderId });
+                const order = await orderService.getOrder( orderId );
                 res.status(200).json({
                     data: order,
                     message: 'Order retrieves'
