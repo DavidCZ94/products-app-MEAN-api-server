@@ -29,7 +29,9 @@ function usersApi(app) {
       cacheResponse(res, SIXTY_MINUTES_IN_SECONDS);
       try {
         const search = req.query.searchBy || '';
-        const users = await usersClientsService.getUsers({ search });
+        const pageNumber = parseInt(req.query.pageNumber);
+        const nPerPage = parseInt(req.query.nPerPage);
+        const users = await usersClientsService.getUsers({ search }, nPerPage , pageNumber);
         res.status(200).json({
           data: users,
           message: 'Products listed',

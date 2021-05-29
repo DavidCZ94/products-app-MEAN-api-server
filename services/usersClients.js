@@ -6,7 +6,7 @@ class UsersClientsService{
         this.mongoDB= new Mongolib();
     }
 
-    async getUsers( { search } ){
+    async getUsers( { search }, nPerPage, pageNumber ){
         
         const query = {
             $or: [
@@ -14,7 +14,7 @@ class UsersClientsService{
                 {email: new RegExp(`.*${search}.*` ,`i`)}
             ]
         }
-        const users = await this.mongoDB.getAll(this.collection, query);
+        const users = await this.mongoDB.getAll(this.collection, query, nPerPage, pageNumber );
         users.map(( param ) => {
                 delete param['password'];
                 return param;
