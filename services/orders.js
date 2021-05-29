@@ -14,7 +14,7 @@ class OrdersService {
         return order || {};
     }
 
-    async getOrders( { search }){
+    async getOrders( { search }, nPerPage, pageNumber ){
         const query = {
             $or: [
                 {clientId:  new RegExp(`.*${search}.*` ,`i`)},
@@ -25,7 +25,7 @@ class OrdersService {
             ]
         }
 
-        const orders = await this.mongoDB.getAll(this.collection, query);
+        const orders = await this.mongoDB.getAll(this.collection, query, nPerPage, pageNumber );
         return orders || [];
     }
 

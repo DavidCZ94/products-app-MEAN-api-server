@@ -49,7 +49,9 @@ function ordersApi(app) {
             cacheResponse(res, SIXTY_MINUTES_IN_SECONDS);       
             try {
                 const search = req.query.searchBy || '';
-                const orders = await orderService.getOrders({ search });
+                const pageNumber = parseInt(req.query.pageNumber);
+                const nPerPage = parseInt(req.query.nPerPage);
+                const orders = await orderService.getOrders({ search }, nPerPage , pageNumber);
                 res.status(200).json({
                     data: orders,
                     message: 'orders listed'

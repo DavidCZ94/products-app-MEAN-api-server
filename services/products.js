@@ -7,7 +7,7 @@ class ProductsService {
     this.mongoDB = new MongoLib();
   }
 
-  async getProducts( { search }, nPerPage, pageNumber  ) {
+  async getProducts( { search }, nPerPage, pageNumber ) {
 
     const query = {
       $or: [
