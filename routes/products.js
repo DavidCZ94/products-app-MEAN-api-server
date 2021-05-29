@@ -32,7 +32,9 @@ function productsApi(app) {
       cacheResponse(res, FIVE_MINUTES_IN_SECONDS);
       try {
         const search = req.query.searchBy || '';
-        const products = await productsService.getProducts({ search });
+        const pageNumber = parseInt(req.query.pageNumber);
+        const nPerPage = parseInt(req.query.nPerPage);
+        const products = await productsService.getProducts({ search }, nPerPage , pageNumber);
         res.status(200).json({
           data: products,
           message: 'Products listed',

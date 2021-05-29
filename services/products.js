@@ -7,7 +7,7 @@ class ProductsService {
     this.mongoDB = new MongoLib();
   }
 
-  async getProducts( { search } ) {
+  async getProducts( { search }, nPerPage, pageNumber  ) {
 
     const query = {
       $or: [
@@ -19,8 +19,7 @@ class ProductsService {
         {tags: new RegExp(`.*${search}.*` ,`i`)},
       ]
     } 
-    
-    const products = await this.mongoDB.getAll(this.collection, query);
+    const products = await this.mongoDB.getAll(this.collection, query, nPerPage, pageNumber );
     return products || [];
   }
 
