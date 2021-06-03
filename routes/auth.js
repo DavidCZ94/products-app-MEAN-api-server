@@ -48,9 +48,8 @@ function authApi(app) {
             email,
             scopes: apiKey.scopes,
           };
-
           const token = jwt.sign(payLoad, config.authJwtSecret, {
-            expiresIn: '15m',
+            expiresIn: '30 days',
           });
 
           return res.status(200).json({ token, user: { id, name, email } });
@@ -63,7 +62,6 @@ function authApi(app) {
 
   router.post('/sign-up', validationHandler(createUserScheme), async function(req, res, next){
     const { body: user } = req;
-    console.log(user);
     try {
       const createdUserId = await userService.createUser({ user });
       res.status(201).json({

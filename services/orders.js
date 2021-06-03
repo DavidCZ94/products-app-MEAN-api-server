@@ -72,6 +72,11 @@ class OrdersService {
         return updatedProductInform;
     }
 
+    updateOrder( {orderId, order}  = {} ) {
+        const updatedOrderId = this.mongoDB.update(this.collection, orderId, order);
+        return updatedOrderId;
+    }
+
     updateProduct( {productId, product}  = {} ) {
         const updatedProductId = this.mongoDB.update(this.productCollection, productId, product);
         return updatedProductId;

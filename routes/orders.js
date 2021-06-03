@@ -85,13 +85,14 @@ function ordersApi(app) {
     router.put(
         '/:orderId',
         scopesValidationHamdler(['update:products']),
-        validationHandler({ orderId: orderIdScheme }, 'params'),
+        //validationHandler({ orderId: orderIdScheme }, 'params'),
         validationHandler(updateOrderScheme),
         async function (req, res, next) {
-          const { orderId } = req.params;
           const { body: order } = req;
+          const { orderId } = req.params || order._id;
+          delete order._id;
           try {
-            const updatedOrderId = await orderService.updateProduct({
+            const updatedOrderId = await orderService.updateOrder({
                 orderId,
                 order,
             });
