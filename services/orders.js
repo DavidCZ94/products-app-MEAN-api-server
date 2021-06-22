@@ -46,7 +46,11 @@ class OrdersService {
         const user = await this.mongoDB.get(this.usersCollection, order.clientId);
         const userId = order.clientId;
         delete order.clientId;
-        user.orders.push(order);
+        if(user.orders == undefined){
+            user.orders = [order];
+        }else{
+            user.orders.push(order);
+        }
         const updatedUserId = this.mongoDB.update(this.usersCollection, userId, user);
         return updatedUserId;
     }
@@ -54,7 +58,8 @@ class OrdersService {
     async updateProductsStock(order){
         const updatedProductInform = await Promise.all(
             order.shopping_cart.map(
-                async (product) => {
+                async (productUpgrade) => {
+                    const product = {...productUpgrade} ;
                     const productId = product._id;
                     delete product._id;
                     delete product.qty;

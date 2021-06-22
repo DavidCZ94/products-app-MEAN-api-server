@@ -12,6 +12,7 @@ const productSkuScheme = joi.string().max(50);
 const productSalePriceScheme = joi.number().min(0).max(999999999);
 const productCostPriceScheme = joi.number().min(0).max(999999999);
 const productTagsSchema = joi.array();
+const productPictures = joi.array();
 
 const createProductSccheme =  {
     name: productNameScheme.required(),
@@ -24,7 +25,8 @@ const createProductSccheme =  {
     cost_price: productCostPriceScheme.required(),
     creation_date: productCreatingDateScheme,
     sku: productSkuScheme,
-    tags: productTagsSchema
+    tags: productTagsSchema,
+    productPictures: productPictures
 };
 
 const updateProductScheme = {
@@ -38,7 +40,8 @@ const updateProductScheme = {
     sku: productSkuScheme,
     sale_price: productSalePriceScheme,
     cost_price: productCostPriceScheme,
-    tags: productTagsSchema
+    tags: productTagsSchema,
+    productPictures: productPictures
 };
 
 module.exports = {
