@@ -28,9 +28,8 @@ class ProductsService {
     return product || {};
   }
 
-  async createProduct({ product }) {
-    const createdProductId = await this.mongoDB.create(
-      this.collection, product);
+  async createProduct( { product } ) {
+    const createdProductId = await this.mongoDB.create( this.collection, product);
     return createdProductId;
   }
 
@@ -40,8 +39,8 @@ class ProductsService {
   }
 
   async deleteProduct( { productId } ) {
-    const data = await this.mongoDB.delete( this.collection, productId );
-    return data;
+    const deletedUserId = await this.mongoDB.delete( this.collection, productId );
+    return deletedUserId;
   }
 
 }
