@@ -122,8 +122,6 @@ typings/
 
 # Testing Data
 
-schemes/
-
 # dotenv environment variables file
 .env
 .env.test
