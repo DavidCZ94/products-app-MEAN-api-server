@@ -35,7 +35,8 @@ class OrdersService {
             ...order,
             'updatedProducstInform': updatedProductsInform
         }
-        const createdOrderId = await this.mongoDB.create( this.collection, order );
+        const createdOrderResult = await this.mongoDB.create( this.collection, order );
+        const createdOrderId = createdOrderResult.insertedId;
         //Update USer
         const orderCreated = await this.getOrder( createdOrderId );
         const userUpdatedId = await this.addTheOrderToTheClient(orderCreated);

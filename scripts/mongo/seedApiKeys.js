@@ -39,11 +39,10 @@ function generateRandomToken() {
 async function seedApiKeys() {
   try {
     const mongoDB = new MongoLib();
-
-    const promises = apiKeys.map(async apiKey => {
-      await mongoDB.create('api-keys', apiKey);
+    const promises = apiKeys.map(async doc => {
+      return mongoDB.create('api-keys', doc)
     });
-
+    
     await Promise.all(promises);
     debug(chalk.green(`${promises.length} api keys have been created succesfully`)); // prettier-ignore
     return process.exit(0);

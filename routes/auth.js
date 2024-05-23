@@ -24,7 +24,7 @@ function authApi(app) {
       next(boom.unauthorized('apiKeyToken is required'));
     }
 
-    passport.authenticate('basic', function (error, user) {
+    passport.authenticate('basic', { session: false }, function (error, user) {
       try {
         if (error || !user) {
           next(boom.unauthorized());

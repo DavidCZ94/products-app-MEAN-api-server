@@ -8,13 +8,11 @@ const { productsMock } = require('../../utils/mocks/products');
 async function seedProducts() {
   try {
     const mongoDB = new MongoLib();
-    
-    // Creating but bnot excecuted promises
+
     const promises = productsMock.map(async product => {
-      await mongoDB.create('products', product);
+      return mongoDB.create('products', product)
     });
 
-    // Excecute the creted promises
     await Promise.all(promises);
     debug(chalk.green(`${promises.length} product have been created succesfully`)); // prettier-ignore
     return process.exit(0);
